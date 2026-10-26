@@ -1,0 +1,38 @@
+[package]
+name = "zest-panels"
+version = "0.1.0"
+edition = "2021"
+description = "Zest panels: Shelf, History and Settings windows (plain Win32 + Common Controls v6)."
+publish = false
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+toml_edit = "0.22"
+tracing = "0.1"
+zest-core = { path = "../zest-core" }
+zest-shell = { path = "../zest-shell" }
+windows-core = "0.58"
+windows = { version = "0.58", features = [
+    "implement",
+    "Win32_Foundation",
+    "Win32_Graphics_Dwm",
+    "Win32_Graphics_Gdi",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Com",
+    "Win32_System_DataExchange",
+    "Win32_System_Memory",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Ole",
+    "Win32_System_Registry",
+    "Win32_System_SystemServices",
+    "Win32_System_Time",
+    "Win32_UI_Controls",
+    "Win32_UI_HiDpi",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_Shell",
+    "Win32_UI_Shell_Common",
+    "Win32_UI_WindowsAndMessaging",
+] }
+
+[dev-dependencies]
+serde_json = "1"

@@ -1,0 +1,38 @@
+{
+  "dependencies": [
+    {
+      "name": "libvips",
+      "version": "8.18.7",
+      "url": "https://github.com/libvips/build-win64-mxe/releases/download/v8.18.7/vips-dev-x64-all-8.18.7.zip",
+      "sha256": "78e56ba30c267ba32ff965200534bd5721364cadbead8c4d595e44b58dfeff15",
+      "dest": "vips",
+      "exe": "bin/vips.exe"
+    },
+    {
+      "name": "ffmpeg",
+      "version": "n8.1.3-18-g46d899d7a0 (GPL, win64, static)",
+      "url": "https://github.com/BtbN/FFmpeg-Builds/releases/download/autobuild-2026-10-18-13-01/ffmpeg-n8.1.3-18-g46d899d7a0-win64-gpl-8.1.zip",
+      "sha256": "76f92392602b95351f4f057b8f6d74815e8c6947a2495c55193bd92f0ea7a2bd",
+      "dest": "ffmpeg",
+      "exe": "bin/ffmpeg.exe"
+    },
+    {
+      "name": "pdfium",
+      "version": "chromium/8100 (bblanchon/pdfium-binaries, win-x64)",
+      "url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8100/pdfium-win-x64.tgz",
+      "sha256": "51621bcc1d9be9ea448f4b84b0516862b928e3968d3fca899af1a6d6e2848d6d",
+      "archive": "tgz",
+      "dest": "pdfium",
+      "exe": "bin/pdfium.dll"
+    },
+    {
+      "name": "pandoc",
+      "version": "3.12.1",
+      "url": "https://github.com/jgm/pandoc/releases/download/3.12.1/pandoc-3.12.1-windows-x86_64.zip",
+      "sha256": "6ef431cb20b2c24a0371fc19200dc49d452be54b1b5c9239f3462841ef53e587",
+      "dest": "pandoc",
+      "exe": "pandoc.exe",
+      "optional": true
+    }
+  ]
+}

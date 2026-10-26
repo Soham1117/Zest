@@ -1,0 +1,43 @@
+[package]
+name = "zest-spike"
+version = "0.1.0"
+edition = "2021"
+description = "Zest Phase 0 feasibility spike: drag gesture, probe window, IDropTarget, radial wheel"
+publish = false
+
+[dependencies]
+anyhow = "1"
+windows = { version = "0.58", features = [
+    "implement",
+    "Foundation_Numerics",
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_Input",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_HiDpi",
+    "Win32_UI_Shell",
+    "Win32_UI_Shell_Common",
+    "Win32_System_Ole",
+    "Win32_System_Com",
+    "Win32_System_Com_StructuredStorage",
+    "Win32_System_SystemServices",
+    "Win32_System_Memory",
+    "Win32_System_Performance",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Threading",
+    "Win32_System_Variant",
+    "Win32_Graphics_Gdi",
+    "Win32_Graphics_Direct2D",
+    "Win32_Graphics_Direct2D_Common",
+    "Win32_Graphics_DirectComposition",
+    "Win32_Graphics_Direct3D",
+    "Win32_Graphics_Direct3D11",
+    "Win32_Graphics_Dxgi",
+    "Win32_Graphics_Dxgi_Common",
+    "Win32_Graphics_DirectWrite",
+    "Win32_Graphics_Dwm",
+] }
+windows-core = "0.58"
+
+

@@ -1,0 +1,20 @@
+[package]
+name = "zest-input"
+version = "0.1.0"
+edition = "2021"
+description = "Zest input: Raw Input drag gesture detector, hold timer, scope filter, key chord."
+
+[dependencies]
+anyhow = "1"
+tracing = "0.1"
+zest-core = { path = "../zest-core" }
+windows = { version = "0.58", features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Gdi",
+    "Win32_Security",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Threading",
+    "Win32_UI_Input",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_WindowsAndMessaging",
+] }

@@ -1,0 +1,13 @@
+[package]
+name = "zest-worker"
+version = "0.1.0"
+edition = "2021"
+description = "Zest worker: PDF pages to images and PDF merge (PDFium). Started by the broker."
+
+[[bin]]
+name = "zest-worker"
+path = "src/main.rs"
+
+[dependencies]
+pdfium-render = { version = "0.9.4", default-features = false, features = ["image_025", "pdfium_latest", "thread_safe"] }
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }

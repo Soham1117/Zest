@@ -1,0 +1,8 @@
+[workspace]
+resolver = "2"
+members = ["crates/zest-worker", "crates/zest-panels", "crates/zest-spike", "crates/zest-app", "crates/zest-core", "crates/zest-broker", "crates/zest-shell", "crates/zest-input", "crates/zest-overlay", "crates/zest-explorer-command"]
+
+[profile.release]
+lto = true
+codegen-units = 1
+# panic = "abort" is NOT allowed: keep unwind.

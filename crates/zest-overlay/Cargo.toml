@@ -1,0 +1,32 @@
+[package]
+name = "zest-overlay"
+version = "0.1.0"
+edition = "2021"
+description = "Zest overlay: radial wheel window (DirectComposition + Direct2D), sub-rings, progress ring."
+
+[dependencies]
+anyhow = "1"
+tracing = "0.1"
+zest-core = { path = "../zest-core" }
+zest-shell = { path = "../zest-shell" }
+windows = { version = "0.58", features = [
+    "Foundation_Numerics",
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Ole",
+    "Win32_System_Registry",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_UI_HiDpi",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_Graphics_Gdi",
+    "Win32_Graphics_Direct2D",
+    "Win32_Graphics_Direct2D_Common",
+    "Win32_Graphics_DirectComposition",
+    "Win32_Graphics_Direct3D",
+    "Win32_Graphics_Direct3D11",
+    "Win32_Graphics_Dxgi",
+    "Win32_Graphics_Dxgi_Common",
+    "Win32_Graphics_DirectWrite",
+    "Win32_Graphics_Dwm",
+] }
