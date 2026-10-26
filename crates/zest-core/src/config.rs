@@ -103,7 +103,7 @@ pub struct UiConfig {
     /// Suppress success balloons; errors still notify.
     #[serde(default)]
     pub quiet: bool,
-    /// Hotkey that undoes the last job (Recycle Bin). Empty = `Ctrl+Z`.
+    /// Hotkey that undoes the last job (Recycle Bin). Empty uses `DEFAULT_UNDO_CHORD`.
     #[serde(default = "default_undo_chord")]
     pub undo_chord: String,
     /// User wants the Win11 top-level "Convert with Zest" sparse package menu.
@@ -121,8 +121,10 @@ impl Default for UiConfig {
     }
 }
 
+pub const DEFAULT_UNDO_CHORD: &str = "Ctrl+Alt+Shift+Z";
+
 fn default_undo_chord() -> String {
-    "Ctrl+Z".into()
+    DEFAULT_UNDO_CHORD.into()
 }
 
 /// What to do when a new output matches an existing file (size + quick hash).
@@ -484,7 +486,7 @@ excluded_processes = []          # for example ["game.exe"]
 
 [ui]
 quiet = false                    # true = no success balloons (errors still notify)
-undo_chord = "Ctrl+Z"            # undo last job (Recycle Bin); change if it conflicts
+undo_chord = "Ctrl+Alt+Shift+Z"  # undo last Zest job (Recycle Bin); leaves Ctrl+Z to other apps
 
 [wheel]
 outer_radius = 140               # logical pixels

@@ -1,7 +1,7 @@
 //! Pure translation of `zest_core::config::Config` triggers into a runtime
 //! plan. No Windows calls (system metrics are passed in), fully unit-tested.
 
-use zest_core::config::{Button, Config, KeyChord, Modifier, Scope, Trigger, TriggerKind};
+use zest_core::config::{Button, Config, KeyChord, Modifier, Scope, Trigger, TriggerKind, DEFAULT_UNDO_CHORD};
 
 use crate::gesture::Mods;
 
@@ -186,11 +186,11 @@ pub fn normalize_process(s: &str) -> String {
     s.trim().rsplit(['\\', '/']).next().unwrap_or("").to_ascii_lowercase()
 }
 
-/// Parse `Ctrl+Z` / `Ctrl+Shift+Z` style undo chords.
+/// Parse undo chords; map legacy Ctrl+Z / Ctrl+Shift+Z to the dedicated Zest shortcut.
 pub fn parse_undo_chord(text: &str) -> Option<(Mods, u32)> {
     let t = text.trim();
     if t.is_empty() {
-        return Some((Mods { ctrl: true, ..Mods::NONE }, 0x5A)); // Ctrl+Z
+        return parse_undo_chord(DEFAULT_UNDO_CHORD);
     }
     let mut mods = Mods::NONE;
     let mut key: Option<u32> = None;
@@ -209,7 +209,13 @@ pub fn parse_undo_chord(text: &str) -> Option<(Mods, u32)> {
             }
         }
     }
-    Some((mods, key?))
+    let key = key?;
+    if key == 0x5A && mods.ctrl && !mods.alt && !mods.win {
+        // RegisterHotKey consumes these shortcuts even when Zest ignores the event.
+        // Keep normal undo/redo available in the foreground application.
+        return parse_undo_chord(DEFAULT_UNDO_CHORD);
+    }
+    Some((mods, key))
 }
 
 fn strip_exe(s: &str) -> &str {
@@ -358,5 +364,27 @@ mod tests {
         cfg.gestures.file_managers = vec!["TotalCmd64.EXE".into()];
         let plan = build_plan(&cfg, (4, 4));
         assert_eq!(plan.file_managers, vec!["totalcmd64.exe"]);
+    }
+
+    #[test]
+    fn undo_default_and_legacy_settings_leave_app_undo_available() {
+        let expected = Some((Mods { ctrl: true, alt: true, shift: true, win: false }, 0x5A));
+        assert_eq!(build_plan(&Config::default(), (4, 4)).undo, expected);
+        for chord in ["", "Ctrl+Z", " control + z ", "Z+Ctrl", "Ctrl+Shift+Z"] {
+            let mut cfg = Config::default();
+            cfg.ui.undo_chord = chord.into();
+            assert_eq!(build_plan(&cfg, (4, 4)).undo, expected, "{chord:?}");
+        }
+    }
+
+    #[test]
+    fn undo_custom_chords_are_preserved() {
+        assert_eq!(parse_undo_chord("Win+Alt+Z"), Some((Mods {
+            win: true, alt: true, ..Mods::NONE
+        }, 0x5A)));
+        assert_eq!(parse_undo_chord("Ctrl+Alt+Shift+Z"), Some((Mods {
+            ctrl: true, alt: true, shift: true, win: false
+        }, 0x5A)));
+        assert_eq!(parse_undo_chord("Ctrl+Bogus"), None);
     }
 }

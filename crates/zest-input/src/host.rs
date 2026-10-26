@@ -71,7 +71,7 @@ pub enum InputEvent {
     HoldTriggered { x: i32, y: i32 },
     /// A registered key chord was pressed (pointer position).
     KeyChord { x: i32, y: i32 },
-    /// Undo last job (config `ui.undo_chord`, default Ctrl+Z). App ignores while the wheel is open.
+    /// Undo last job (config `ui.undo_chord`, default Ctrl+Alt+Shift+Z). App ignores while the wheel is open.
     Undo,
 }
 

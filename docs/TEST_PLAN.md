@@ -54,6 +54,8 @@ powershell -ExecutionPolicy Bypass -File tools\install.ps1
 
 - [ ] Shelf: drop files on it, then drag them out to a folder. **The file is copied, not moved.** It survives a restart of Zest.
 - [ ] History: jobs are listed. Show in folder, Re-run, Retry failed, and Undo (outputs go to the Recycle Bin, after a confirm). Search works. The taskbar progress shows while a job runs.
+- [ ] With Zest running, Ctrl+Z still undoes typing in Notepad and file operations in Explorer. Ctrl+Shift+Z also remains available to other apps.
+- [ ] Ctrl+Alt+Shift+Z opens Zest's undo confirmation. An old `ui.undo_chord = "Ctrl+Z"` setting uses this shortcut too.
 - [ ] Settings: change the gesture modifier, outer radius and output folder, then Save. The change applies without a restart, and the comments in `config.toml` are kept.
 - [ ] Settings → Engines: "Download Pandoc (40 MB)" asks first, shows progress, then a ✓. "Get LibreOffice…" opens the browser.
 - [ ] Dark mode: the windows and controls are readable.

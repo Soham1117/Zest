@@ -262,6 +262,9 @@ output in Explorer. The buttons and the right-click menu:
 | Cancel job | Stops a running job. |
 | Copy error | Puts the error messages of the job on the clipboard. |
 
+Press **Ctrl+Alt+Shift+Z** to undo the last Zest job. Normal **Ctrl+Z** and **Ctrl+Shift+Z**
+stay available to other apps. Older `ui.undo_chord` settings using those shortcuts use the new Zest shortcut.
+
 While the window is open and jobs run, its taskbar button shows the progress of all running jobs. It turns red when
 a job failed, until you look at the window.
 
